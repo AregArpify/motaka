@@ -8,7 +8,7 @@ const Verification = () => {
   return (
     <div className="verification" style={{overflow: "hidden"}}>
       <div className="verificate__header">
-        <p>Verification</p>
+        <p>Verificatio</p>
       </div>
       <div className="verificate__text">
         <p>
