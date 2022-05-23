@@ -2,13 +2,13 @@ import React from "react";
 import { useHistory } from "react-router";
 import "./Verification.scss";
 
-const Verification = () => {
+const Verification = (props) => {
   const history = useHistory();
 
   return (
     <div className="verification" style={{overflow: "hidden"}}>
       <div className="verificate__header">
-        <p>Verificatio</p>
+        <p>verification</p>
       </div>
       <div className="verificate__text">
         <p>

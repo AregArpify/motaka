@@ -1,8 +1,25 @@
-import React from "react";
-import "./forgotpassowrd.scss"
-import PhoneInput from 'react-phone-input-2'
+import React, { useState } from "react";
+import "./forgotpassowrd.scss";
+import InputMask from "react-input-mask";
 
 const Forgotpass = () => {
+  const [phone, setPhone] = useState("");
+
+
+
+  const forgotPass = async (e) => {
+      const response = await fetch(
+        "https://motaka.herokuapp.com/forgot_password",
+        {
+          method: "POST", // или 'PUT'
+          body: JSON.stringify({ phone }), // данные могут быть 'строкой' или {объектом}!
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  };
+
   return (
     <div className="password">
       <div className="password_text">
@@ -18,12 +35,24 @@ const Forgotpass = () => {
         <form>
           <label>
             <p>Phone Number</p>
-            <input type="tel" placeholder="Enter your phone number" />
+            <InputMask
+              mask="+374 99 999999"
+              maskChar=""
+              placeholder="Phone Number"
+              name="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              autoComplete={"current-name"}
+              type="tel"
+              required
+            />
+            <div className="password_button">
+              <button type="submit" onClick={forgotPass}>
+                Reset Password
+              </button>
+            </div>
           </label>
         </form>
-      </div>
-      <div className="password_button">
-        <button>Reset Password</button>
       </div>
     </div>
   );

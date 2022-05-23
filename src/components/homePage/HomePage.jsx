@@ -22,6 +22,7 @@ import laundry from '../image/laundry.jpg'
 import plumbing from '../image/plumbing.jpg'
 import technology from '../image/technology.jpg'
 import beauty from '../image/beauty.jpg'
+import Verification from '../verification/Verification';
 
 
 export const HomePage = () => {
@@ -35,6 +36,13 @@ export const HomePage = () => {
     const JobListing = (value) => {
         history.push(value);
     }
+    const ForgotPass = (value) => {
+        history.push(value);
+    }
+    const Verification = (value) => {
+        history.push(value);
+    }
+
 
     return (
         <header className='header_homePage'>
@@ -266,6 +274,12 @@ export const HomePage = () => {
                     </div>
                     <div>
                         <button onClick={() => JobListing('JobListing')}>JobListing</button>
+                    </div>
+                    <div>
+                        <button onClick={() => ForgotPass('ForgotPass')}>ForgotPass</button>
+                    </div>
+                    <div>
+                        <button onClick={() => Verification('Verification')}>Verification</button>
                     </div>
                 </div>
 
