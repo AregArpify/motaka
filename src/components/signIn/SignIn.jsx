@@ -121,7 +121,7 @@ const successResponseFacebook=(response)=>{
                 <div className='shape1'>
                 </div>
                 <div className='text'>
-                    <h1>Welcome Back!</h1>
+                    <h1>Welcome Back</h1>
                     <p>To keep connected with us please sign up with your personal info</p>
                     <button onClick={() => SignUp('SignUp')}>Sign Up</button>
                 </div>
