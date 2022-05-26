@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useHistory} from "react-router";
+
 import './Homepage.scss'
 import chat from '../image/chat.jpg'
 import HPImg from '../image/HPImg.png'
@@ -23,24 +23,25 @@ import plumbing from '../image/plumbing.jpg'
 import technology from '../image/technology.jpg'
 import beauty from '../image/beauty.jpg'
 import Verification from '../verification/Verification';
+import { useNavigate } from 'react-router';
 
 
 export const HomePage = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const SignUp = (value) => {
-        history.push(value);
+       navigate("/signup")
     }
     const SignIn = (value) => {
-        history.push(value);
+       navigate("/signin")
     }
     const JobListing = (value) => {
-        history.push(value);
+       navigate("/joblisting")
     }
     const ForgotPass = (value) => {
-        history.push(value);
+        navigate("/forgotpass")
     }
     const Verification = (value) => {
-        history.push(value);
+        navigate("/verification")
     }
 
 

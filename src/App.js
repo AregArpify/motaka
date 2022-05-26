@@ -1,20 +1,11 @@
-import { Route } from "react-router";
-import {routes} from "./routes";
-
-
-export const App=()=> {
-    return (
-        <div>
-            {routes.map((item, index) => (
-                <Route
-                    key={index}
-                    path={item.path}
-                    exact={item.exact}
-                    children={<item.page />}
-                />
-            ))}
-        </div>
-    );
+import React from "react";
+import AllRoutes from "./routes/routes";
+ export function App() {
+  return (
+    <>
+      <AllRoutes />
+    </>
+  );
 }
 
-
+export default App;

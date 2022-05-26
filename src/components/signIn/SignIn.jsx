@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {showPass, reShowPass, checkType, checkTypeProv, capitalType, capitalOk} from "../../store/actions";
 import "./StyleSignIn.scss"
-import {useHistory} from "react-router";
+import {useNavigate} from "react-router-dom";
 import InputMask from 'react-input-mask'
 import eyeOpen from '../image/eyeOpen.jpg'
 import eyeClosed from '../image/eyeClosed.jpg'
@@ -13,9 +13,9 @@ import FacebookLogin from 'react-facebook-login'
 
 export const SignIn = () => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
     const SignUp = (value) => {
-        history.push(value);
+        navigate("/signup")
     }
     const dispatch = useDispatch();
     const state = useSelector((state) => state)

@@ -10,15 +10,18 @@ import {
   capitalOk,
 } from "../../store/actions";
 import "./StyleSignUp.scss";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 import eyeOpen from "../image/eyeOpen.jpg";
 import eyeClosed from "../image/eyeClosed.jpg";
 
 export const SignUp = () => {
-  const history = useHistory();
+  // const history = useHistory();
+  const navigate=useNavigate();
   const SignIn = (value) => {
-    history.push(value);
+    // history.push(value);
+    navigate("/signin")
+
   };
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -170,6 +173,7 @@ export const SignUp = () => {
       })
       .then((data) => {
         console.log("Registration Success:", data);
+        navigate("/")
       })
       .catch((error) => {
         console.error("Error:", error);

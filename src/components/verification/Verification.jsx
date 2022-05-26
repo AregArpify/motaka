@@ -1,9 +1,9 @@
 import React from "react";
-import { useHistory } from "react-router";
+import {useNavigate } from "react-router-dom";
 import "./Verification.scss";
 
 const Verification = (props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <div className="verification" style={{overflow: "hidden"}}>
