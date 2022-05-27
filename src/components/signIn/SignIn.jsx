@@ -130,21 +130,22 @@ const successResponseFacebook=(response)=>{
             </div>
             <div className='aside_right'>
                 <h1>Sign In to Motaka</h1>
-                {/*<div className='social'>*/}
-                {/*    <div>*/}
-                {/*        <GoogleLogin className='login_google'*/}
-                {/*            clientId="672599364365-tpf3f4okr12q4la8su1vrdhhd8gmsm2f.apps.googleusercontent.com"*/}
-                {/*            buttonText="SignUp with Google"*/}
-                {/*            onSuccess={successResponseGoogle}*/}
-                {/*            onFailure={errorResponseGoogle}*/}
-                {/*            cookiePolicy={'single_host_origin'}*/}
-                {/*        />,*/}
-                {/*    </div>*/}
-                {/*    <FacebookLogin className='login_facebook'*/}
-                {/*                   appId="732890848050124"*/}
-                {/*                   autoLoad={false}*/}
-                {/*                   callback={successResponseFacebook}/>,*/}
-                {/*</div>*/}
+                <div className='social'>
+                  <div>
+                      <GoogleLogin className='login_google'
+                          clientId="672599364365-tpf3f4okr12q4la8su1vrdhhd8gmsm2f.apps.googleusercontent.com"
+                          buttonText=" Google" 
+                          onSuccess={successResponseGoogle}
+                          onFailure={errorResponseGoogle}
+                          cookiePolicy={'single_host_origin'}
+                          onAutoLoadFinished={false}
+                      />,
+                  </div>
+                  <FacebookLogin className='login_facebook' 
+                                  appId="732890848050124"
+                                  autoLoad={false}
+                                  callback={successResponseFacebook}/>,
+                </div>
                 <p className='or'>-OR-</p>
 
                 <form onSubmit={handleSubmit}>

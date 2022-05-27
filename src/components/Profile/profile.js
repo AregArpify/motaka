@@ -12,36 +12,36 @@ function Profile() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const tokenn = JSON.parse(localStorage.getItem("token"));
-        if (tokenn) {
-            setToken("JWT " + tokenn.access)
-        } 
+    // useEffect(() => {
+    //     const tokenn = JSON.parse(localStorage.getItem("token"));
+    //     if (tokenn) {
+    //         setToken("JWT " + tokenn.access)
+    //     } 
 
-        if (!tokenn) {
-            navigate("/");
-        } else {
-            if (JSON.parse(localStorage.getItem("user"))) {
-                setUserInfo(JSON.parse(localStorage.getItem("user")));
-                setPicture({ ...picture, croppedImg: JSON.parse(localStorage.getItem("user")).avatar })
-                setPictureBack({ ...pictureBack, croppedImg: JSON.parse(localStorage.getItem("user")).profile_background })
-            }
-        }
-    }, [navigate]);
+    //     if (!tokenn) {
+    //         navigate("/");
+    //     } else {
+    //         if (JSON.parse(localStorage.getItem("user"))) {
+    //             setUserInfo(JSON.parse(localStorage.getItem("user")));
+    //             setPicture({ ...picture, croppedImg: JSON.parse(localStorage.getItem("user")).avatar })
+    //             setPictureBack({ ...pictureBack, croppedImg: JSON.parse(localStorage.getItem("user")).profile_background })
+    //         }
+    //     }
+    // }, [navigate]);
 
 
-    // base 64 to image
-    function dataURLtoFile(dataurl, filename) {
-        var arr = dataurl.split(','),
-            mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]),
-            n = bstr.length,
-            u8arr = new Uint8Array(n);
-        while (n--) {
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new File([u8arr], filename, { type: mime });
-    }
+    // // base 64 to image
+    // function dataURLtoFile(dataurl, filename) {
+    //     var arr = dataurl.split(','),
+    //         mime = arr[0].match(/:(.*?);/)[1],
+    //         bstr = atob(arr[1]),
+    //         n = bstr.length,
+    //         u8arr = new Uint8Array(n);
+    //     while (n--) {
+    //         u8arr[n] = bstr.charCodeAt(n);
+    //     }
+    //     return new File([u8arr], filename, { type: mime });
+    // }
     // change profile pic methods
     let editor = "";
     const [picture, setPicture] = useState({
@@ -65,39 +65,39 @@ function Profile() {
     const setEditorRef = (ed) => {
         editor = ed;
     };
-    const handleSave = (e) => {
-        if (setEditorRef) {
-            const canvasScaled = editor.getImageScaledToCanvas();
-            const croppedImg = canvasScaled.toDataURL();
-            let file = dataURLtoFile(croppedImg, 'profile.png');
-            const formData = new FormData();
-            formData.append("avatar", file);
-            axios.patch('https://socialreading.xyz/auth/users/me/', formData, {
-                headers: { "Authorization": token }
-            }).then(resp => {
-                console.log("respo", resp)
-                if (JSON.parse(localStorage.getItem("token"))) {
-                    localStorage.setItem('user', JSON.stringify(resp.data));
-                    setUserInfo(JSON.parse(localStorage.getItem("user")));
-                    setPicture({ ...picture, croppedImg: JSON.parse(localStorage.getItem("user")).avatar, cropperOpen: false })
-                }
-                window.location.reload()
-            }).catch((error) => {
-                if (error.response) {
-                    console.log("error.response ", error.response);
-                } else if (error.request) {
-                    console.log("error.request ", error.request);
-                } else if (error.message) {
-                    console.log("error.request ", error.message);
-                }
-            });
-            setPicture({
-                ...picture,
-                img: null,
-                cropperOpen: false,
-            });
-        }
-    };
+    // const handleSave = (e) => {
+    //     if (setEditorRef) {
+    //         const canvasScaled = editor.getImageScaledToCanvas();
+    //         const croppedImg = canvasScaled.toDataURL();
+    //         let file = dataURLtoFile(croppedImg, 'profile.png');
+    //         const formData = new FormData();
+    //         formData.append("avatar", file);
+    //         axios.patch('https://socialreading.xyz/auth/users/me/', formData, {
+    //             headers: { "Authorization": token }
+    //         }).then(resp => {
+    //             console.log("respo", resp)
+    //             if (JSON.parse(localStorage.getItem("token"))) {
+    //                 localStorage.setItem('user', JSON.stringify(resp.data));
+    //                 setUserInfo(JSON.parse(localStorage.getItem("user")));
+    //                 setPicture({ ...picture, croppedImg: JSON.parse(localStorage.getItem("user")).avatar, cropperOpen: false })
+    //             }
+    //             window.location.reload()
+    //         }).catch((error) => {
+    //             if (error.response) {
+    //                 console.log("error.response ", error.response);
+    //             } else if (error.request) {
+    //                 console.log("error.request ", error.request);
+    //             } else if (error.message) {
+    //                 console.log("error.request ", error.message);
+    //             }
+    //         });
+    //         setPicture({
+    //             ...picture,
+    //             img: null,
+    //             cropperOpen: false,
+    //         });
+    //     }
+    // };
 
     // change background pic methods
 
@@ -124,41 +124,41 @@ function Profile() {
     const setEditorRefBack = (ed) => {
         editorBack = ed;
     };
-    const handleSaveBack = (e) => {
-        if (setEditorRefBack) {
-            const canvasScaled = editorBack.getImageScaledToCanvas();
-            const croppedImgBack = canvasScaled.toDataURL();
-            let file = dataURLtoFile(croppedImgBack, 'profileBack.png');
-            const formData = new FormData();
-            formData.append("profile_background", file);
+    // const handleSaveBack = (e) => {
+    //     if (setEditorRefBack) {
+    //         const canvasScaled = editorBack.getImageScaledToCanvas();
+    //         const croppedImgBack = canvasScaled.toDataURL();
+    //         let file = dataURLtoFile(croppedImgBack, 'profileBack.png');
+    //         const formData = new FormData();
+    //         formData.append("profile_background", file);
 
-            axios.patch('https://socialreading.xyz/auth/users/me/', formData, {
-                headers: { "Authorization": token }
-            })
-                .then(resp => {
-                    console.log("respo", resp)
-                    if (JSON.parse(localStorage.getItem("token"))) {
-                        localStorage.setItem('user', JSON.stringify(resp.data));
-                        setUserInfo(JSON.parse(localStorage.getItem("user")));
-                        setPictureBack({ ...pictureBack, croppedImg: JSON.parse(localStorage.getItem("user")).profile_background, cropperOpen: false })
-                    }
-                    window.location.reload()
-                }).catch((error) => {
-                    if (error.response) {
-                        console.log("error.response ", error.response);
-                    } else if (error.request) {
-                        console.log("error.request ", error.request);
-                    } else if (error.message) {
-                        console.log("error.request ", error.message);
-                    }
-                });
-            setPictureBack({
-                ...pictureBack,
-                img: null,
-                cropperOpen: false,
-            });
-        }
-    };
+    //         axios.patch('https://socialreading.xyz/auth/users/me/', formData, {
+    //             headers: { "Authorization": token }
+    //         })
+    //             .then(resp => {
+    //                 console.log("respo", resp)
+    //                 if (JSON.parse(localStorage.getItem("token"))) {
+    //                     localStorage.setItem('user', JSON.stringify(resp.data));
+    //                     setUserInfo(JSON.parse(localStorage.getItem("user")));
+    //                     setPictureBack({ ...pictureBack, croppedImg: JSON.parse(localStorage.getItem("user")).profile_background, cropperOpen: false })
+    //                 }
+    //                 window.location.reload()
+    //             }).catch((error) => {
+    //                 if (error.response) {
+    //                     console.log("error.response ", error.response);
+    //                 } else if (error.request) {
+    //                     console.log("error.request ", error.request);
+    //                 } else if (error.message) {
+    //                     console.log("error.request ", error.message);
+    //                 }
+    //             });
+    //         setPictureBack({
+    //             ...pictureBack,
+    //             img: null,
+    //             cropperOpen: false,
+    //         });
+    //     }
+    // };
     return (
         <>
             <div className="profilePage">
@@ -179,7 +179,7 @@ function Profile() {
                         });
                     }}
                     />
-
+ 
                 </div>
                 <div className="my_info">
                     <div className="name_and_pic">
@@ -255,7 +255,7 @@ function Profile() {
                         ></Slider>
                         <Box>
                             <Button variant="contained" onClick={handleCancel}>Cancel</Button>
-                            <Button onClick={handleSave}>Save</Button>
+                            {/* <Button onClick={handleSave}>Save</Button> */}
                         </Box>
                     </Box>
                 </div>
@@ -283,7 +283,7 @@ function Profile() {
                         ></Slider>
                         <Box>
                             <Button variant="contained" onClick={handleCancelBack}>Cancel</Button>
-                            <Button onClick={handleSaveBack}>Save</Button>
+                            {/* <Button onClick={handleSaveBack}>Save</Button> */}
                         </Box>
                     </Box>
                 </div>
