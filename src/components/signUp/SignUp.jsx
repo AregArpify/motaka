@@ -9,6 +9,7 @@ import {
   capitalType,
   capitalOk,
 } from "../../store/actions";
+import { useNavigate } from "react-router-dom";
 import "./StyleSignUp.scss";
 import { useHistory } from "react-router";
 import InputMask from "react-input-mask";
@@ -16,6 +17,7 @@ import eyeOpen from "../image/eyeOpen.jpg";
 import eyeClosed from "../image/eyeClosed.jpg";
 
 export const SignUp = () => {
+  
   const history = useHistory();
   const SignIn = (value) => {
     history.push(value);
@@ -41,7 +43,7 @@ export const SignUp = () => {
   };
   const [special, setSpecial] = useState(initialState);
   const { value1 } = special;
-
+  const navigate=useNavigate();
   const handleChange1 = (e) => {
     setSpecial({ value1: e.target.value });
   };
@@ -170,6 +172,7 @@ export const SignUp = () => {
       })
       .then((data) => {
         console.log("Registration Success:", data);
+        navigate("/")
       })
       .catch((error) => {
         console.error("Error:", error);
