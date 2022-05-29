@@ -13,6 +13,7 @@ import FacebookLogin from 'react-facebook-login'
 
 export const SignIn = () => {
 
+
     const navigate = useNavigate();
     const SignUp = (value) => {
         navigate("/signup")
@@ -57,7 +58,6 @@ export const SignIn = () => {
         if (allInput) {
             alert('Fill in all required fields')
         } else {
-
             fetch(url, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -98,10 +98,12 @@ export const SignIn = () => {
             .then(response => {
                 console.log(response)
                 return response.json()
+                
             })
 
             .then(data => {
-                console.log('Registration Success:', data);
+                console.log('login Success:', data);
+                navigate("/profile")
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -141,9 +143,11 @@ const successResponseFacebook=(response)=>{
                           onAutoLoadFinished={false}
                       />,
                   </div>
-                  <FacebookLogin className='login_facebook' 
+                  <FacebookLogin className='login_facebook ' 
                                   appId="732890848050124"
                                   autoLoad={false}
+                                  textButton="F continue with facebook"
+                                  
                                   callback={successResponseFacebook}/>,
                 </div>
                 <p className='or'>-OR-</p>

@@ -141,6 +141,7 @@ export const SignUp = () => {
 
         .then((data) => {
           console.log("Registration Success:", data);
+          navigate("/profile") 
         })
         .catch((error) => {
           console.error("Error:", error);

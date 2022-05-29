@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-// import "./profile.css";
+import "./profile.css";
 import { Button, Box, Slider } from "@material-ui/core";
 import AvatarEditor from "react-avatar-editor";
 import axios from "axios";
+
 function Profile() {
     const [userInfo, setUserInfo] = useState("");
-    // const [userGoogle, setUserGoogle] = useState("");
-    // const [userFb, setUserFb] = useState("");
-    const [token, setToken] = useState("")
-
+    const [userGoogle, setUserGoogle] = useState("");
+    const [userFb, setUserFb] = useState("");
+    const [token, setToken] = useState("");
     const navigate = useNavigate();
 
     // useEffect(() => {
@@ -43,7 +43,7 @@ function Profile() {
     //     return new File([u8arr], filename, { type: mime });
     // }
     // change profile pic methods
-    let editor = "";
+    let editor = ""; 
     const [picture, setPicture] = useState({
         cropperOpen: false,
         img: null,
@@ -218,7 +218,7 @@ function Profile() {
                     </div>
                 </div>
                 <div className="profile_menu">
-                    <ul className="profile_menu_list">
+                    {/* <ul className="profile_menu_list">
                         <li>
                             <Link to="post">Posts</Link>
                         </li>
@@ -228,7 +228,7 @@ function Profile() {
                         <li>
                             <Link to="saved">Saved</Link>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
             {picture.cropperOpen && (
